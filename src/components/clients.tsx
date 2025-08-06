@@ -53,12 +53,12 @@ const Clients = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center relative">
             {/* Background title */}
-            <h2 className="text-6xl md:text-8xl font-bold text-gray-200 absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4 z-0">
+            <h2 className="text-7xl md:text-9xl  font-bold text-gray-200 absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-13 z-0 whitespace-nowrap overflow-hidden">
               Our Clients
             </h2>
             
             {/* Main title */}
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-10 relative z-10">
               Our Clients
             </h2>
             
@@ -73,7 +73,7 @@ const Clients = () => {
               >
                 <div className="relative">
                   {/* Navigation arrows positioned to the right */}
-                  <div className="absolute top-0 right-0 z-20 flex gap-2">
+                  <div className="absolute -top-12 right-0 z-20 flex gap-2">
                     <CarouselPrevious className="relative -left-0 -top-0 translate-y-0 translate-x-0 h-8 w-8 bg-purple-200 border-purple-300 hover:bg-purple-300" />
                     <CarouselNext className="relative -right-0 -top-0 translate-y-0 translate-x-0 h-8 w-8 bg-purple-200 border-purple-300 hover:bg-purple-300" />
                   </div>
@@ -81,16 +81,16 @@ const Clients = () => {
                   <CarouselContent className="-ml-2 md:-ml-4">
                     {clients.map((client, index) => (
                       <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/6">
-                        <div className="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 w-[200px] h-[160px] mx-auto">
+                        <div className="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 w-[160px] h-[140px] md:w-[180px] md:h-[160px] lg:w-[186px] lg:h-[195px] mx-auto">
                           {/* Logo placeholder */}
-                          <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3 flex-shrink-0">
-                            <span className={client.logoStyle}>
+                          <div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gray-100 rounded-full flex items-center justify-center mb-2 md:mb-3 flex-shrink-0">
+                            <span className={`${client.logoStyle} text-sm md:text-base lg:text-lg`}>
                               {client.logo}
                             </span>
                           </div>
                           
                           {/* Client name */}
-                          <h3 className="text-sm font-medium text-gray-900 text-center leading-tight flex-1 flex items-center justify-center">
+                          <h3 className="text-xs md:text-sm font-medium text-gray-900 text-center leading-tight flex-1 flex items-center justify-center">
                             {client.name}
                           </h3>
                           
