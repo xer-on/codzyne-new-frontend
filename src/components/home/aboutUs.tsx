@@ -93,39 +93,19 @@ const AboutUs = () => {
           </h2>
         </div>
 
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-          {/* Left Column */}
-          <div className="space-y-8">
-                         {contentSections.slice(0, 3).map((section, index) => (
-               <div 
-                 key={index} 
-                 className={`flex items-start space-x-4 transition-all duration-700 ${
-                   isVisible ? 'animate-fade-in-up opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                 }`}
-                 style={{
-                   animationDelay: isVisible ? `${index * 200}ms` : '0ms',
-                   animationFillMode: 'both'
-                 }}
-               >
-                <div className="flex-shrink-0 w-12 h-12 bg-purple-200 rounded-lg flex items-center justify-center text-purple-600 text-xl font-bold">
-                  {section.icon}
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">
-                    {section.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {section.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-                     {/* Central Image */}
-           <div className="flex justify-center">
-             <div className="relative w-96 h-[600px] rounded-lg shadow-lg overflow-hidden">
+                 {/* Main Content */}
+         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+           {/* Central Image - Top on mobile, center on desktop */}
+           <div className="flex justify-center order-1 lg:order-2">
+             <div 
+               className={`relative w-full max-w-sm lg:w-96 h-[400px] lg:h-[600px] rounded-lg shadow-lg overflow-hidden transition-all duration-700 ${
+                 isVisible ? 'animate-fade-in-up opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+               }`}
+               style={{
+                 animationDelay: isVisible ? '300ms' : '0ms',
+                 animationFillMode: 'both'
+               }}
+             >
                <Image 
                  src="https://mysoftltd.com/assets/img/abt-homepage.jpg" 
                  alt="Person working at computer" 
@@ -135,9 +115,9 @@ const AboutUs = () => {
              </div>
            </div>
 
-          {/* Right Column */}
-          <div className="space-y-8">
-                         {contentSections.slice(3, 6).map((section, index) => (
+           {/* Left Column */}
+           <div className="space-y-8 order-2 lg:order-1">
+             {contentSections.slice(0, 3).map((section, index) => (
                <div 
                  key={index} 
                  className={`flex items-start space-x-4 transition-all duration-700 ${
@@ -148,21 +128,49 @@ const AboutUs = () => {
                    animationFillMode: 'both'
                  }}
                >
-                <div className="flex-shrink-0 w-12 h-12 bg-purple-200 rounded-lg flex items-center justify-center text-purple-600 text-xl font-bold">
-                  {section.icon}
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">
-                    {section.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {section.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+                 <div className="flex-shrink-0 w-12 h-12 bg-purple-200 rounded-lg flex items-center justify-center text-purple-600 text-xl font-bold">
+                   {section.icon}
+                 </div>
+                 <div>
+                   <h3 className="text-lg font-bold text-gray-800 mb-2">
+                     {section.title}
+                   </h3>
+                   <p className="text-gray-600 leading-relaxed">
+                     {section.description}
+                   </p>
+                 </div>
+               </div>
+             ))}
+           </div>
+
+           {/* Right Column */}
+           <div className="space-y-8 order-3 lg:order-3">
+             {contentSections.slice(3, 6).map((section, index) => (
+               <div 
+                 key={index} 
+                 className={`flex items-start space-x-4 transition-all duration-700 ${
+                   isVisible ? 'animate-fade-in-up opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                 }`}
+                 style={{
+                   animationDelay: isVisible ? `${index * 200}ms` : '0ms',
+                   animationFillMode: 'both'
+                 }}
+               >
+                 <div className="flex-shrink-0 w-12 h-12 bg-purple-200 rounded-lg flex items-center justify-center text-purple-600 text-xl font-bold">
+                   {section.icon}
+                 </div>
+                 <div>
+                   <h3 className="text-lg font-bold text-gray-800 mb-2">
+                     {section.title}
+                   </h3>
+                   <p className="text-gray-600 leading-relaxed">
+                     {section.description}
+                   </p>
+                 </div>
+               </div>
+             ))}
+           </div>
+         </div>
       </div>
     </section>
   );
