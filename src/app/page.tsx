@@ -1,7 +1,7 @@
-import Clients from "@/components/clients";
-import HeroSection from "@/components/heroSection";
+import AboutUs from "@/components/home/aboutUs";
+import Clients from "@/components/home/clients";
+import HeroSection from "@/components/home/heroSection";
 import Navbar from "@/components/navbar";
-import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -14,6 +14,9 @@ export default function Home() {
 
       {/* Our Clients Section */}
       <Clients />
+
+      {/* About Us Section */}
+      <AboutUs />
     </div>
   );
 }

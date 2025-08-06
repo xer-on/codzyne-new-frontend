@@ -1,14 +1,14 @@
 "use client"
 
 import React from 'react'
-import { Button } from './ui/button'
+import { Button } from '../ui/button'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from './ui/carousel'
+} from '../ui/carousel'
 
 const clients = [
   {
@@ -53,12 +53,12 @@ const Clients = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center relative">
             {/* Background title */}
-            <h2 className="text-7xl md:text-9xl  font-bold text-gray-200 absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-13 z-0 whitespace-nowrap overflow-hidden">
+            <h2 className="text-7xl md:text-9xl font-bold text-gray-200 absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-13 z-0 whitespace-nowrap overflow-hidden animate-fade-in-up opacity-0" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               Our Clients
             </h2>
             
             {/* Main title */}
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-10 relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-10 relative z-10 animate-fade-in-up opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
               Our Clients
             </h2>
             
@@ -119,6 +119,23 @@ const Clients = () => {
           </div>
         </div>
       </section>
+      
+      <style jsx>{`
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out;
+        }
+      `}</style>
     </div>
   )
 }
