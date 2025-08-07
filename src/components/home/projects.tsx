@@ -35,7 +35,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
       <div className="p-4 text-center flex-grow flex items-center justify-center">
         <h3 className="text-lg font-semibold text-[#007040]">{title}</h3>
-        {description && <p className="text-gray-600 text-sm mt-1">{description}</p>}
       </div>
     </div>
   );
@@ -49,7 +48,6 @@ const projectsData = [
   {
     imageSrc: "/images/rangpur_community.png", // Placeholder
     title: "Rangpur Community Medical College & Hospital",
-    description: "Rangpur, Bangladesh",
   },
   {
     imageSrc: "/images/prime_medical.png", // Placeholder
@@ -99,7 +97,7 @@ const Projects = () => {
           <p className="text-[#007040] text-sm font-semibold mb-2 uppercase">
             OUR PROJECTS
           </p>
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-5xl font-extrabold text-gray-800 mb-4">
             Projects We have <span className="text-[#007040]">Worked</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -115,6 +113,7 @@ const Projects = () => {
             opts={{
               align: "start",
               loop: true,
+              
             }}
             className="w-full"
           >
@@ -125,8 +124,8 @@ const Projects = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            {/* <CarouselPrevious /> */}
+            {/* <CarouselNext /> */}
           </Carousel>
         </div>
 
