@@ -1,9 +1,37 @@
-import React from 'react';
+"use client"
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 
 const Solutions = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the section is visible
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className="w-full">
+    <section ref={sectionRef} className="w-full relative">
       {/* Top Section - Dark Background */}
       <div className='flex justify-center items-center'>
       <div className="bg-[url('/Banners/banner1.jpg')] bg-cover bg-center text-white py-16 px-4 relative overflow-hidden w-[1180px] h-[500px]">
@@ -54,26 +82,20 @@ const Solutions = () => {
       </div>
       </div>
 
-      {/* Bottom Section - White Background */}
-      <div className="bg-white py-16 px-4 relative">
-        {/* Abstract Geometric Shapes */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-10 left-10 w-8 h-8 bg-red-500 rounded-full opacity-20"></div>
-          <div className="absolute top-20 right-20 w-6 h-6 bg-blue-500 rounded-full opacity-20"></div>
-          <div className="absolute top-40 left-1/4 w-4 h-4 bg-yellow-500 rounded-full opacity-20"></div>
-          <div className="absolute top-60 right-1/3 w-5 h-5 bg-green-500 rounded-full opacity-20"></div>
-          <div className="absolute bottom-20 left-20 w-6 h-6 border-2 border-red-500 rounded-full opacity-20"></div>
-          <div className="absolute bottom-40 right-10 w-4 h-4 border-2 border-blue-500 rounded-full opacity-20"></div>
-          <div className="absolute bottom-60 left-1/3 w-5 h-5 border-2 border-green-500 rounded-full opacity-20"></div>
-          <div className="absolute top-80 right-1/4 w-3 h-3 bg-yellow-500 rounded-full opacity-20"></div>
-          <div className="absolute top-32 left-1/2 w-4 h-4 bg-red-500 rounded-full opacity-20"></div>
-          <div className="absolute bottom-32 right-1/2 w-5 h-5 bg-blue-500 rounded-full opacity-20"></div>
-        </div>
-
+      {/* Cards Section - Positioned to overlap with banner */}
+      <div className="relative -mt-32 mb-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Card 1 - Laboratory Information System */}
-            <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div 
+              className={`bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-all duration-700 ${
+                isVisible ? 'animate-slide-up opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+              }`}
+              style={{
+                animationDelay: isVisible ? '200ms' : '0ms',
+                animationFillMode: 'both'
+              }}
+            >
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 bg-green-500 rounded-lg flex items-center justify-center mb-6">
                   <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -88,7 +110,15 @@ const Solutions = () => {
             </div>
 
             {/* Card 2 - Hospital Information System */}
-            <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div 
+              className={`bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-all duration-700 ${
+                isVisible ? 'animate-slide-up opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+              }`}
+              style={{
+                animationDelay: isVisible ? '400ms' : '0ms',
+                animationFillMode: 'both'
+              }}
+            >
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mb-6">
                   <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -102,7 +132,15 @@ const Solutions = () => {
             </div>
 
             {/* Card 3 - Radiology Information System */}
-            <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div 
+              className={`bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-all duration-700 ${
+                isVisible ? 'animate-slide-up opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+              }`}
+              style={{
+                animationDelay: isVisible ? '600ms' : '0ms',
+                animationFillMode: 'both'
+              }}
+            >
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center mb-6">
                   <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -115,6 +153,23 @@ const Solutions = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Bottom Section - White Background */}
+      <div className="bg-white py-16 px-4 relative">
+        {/* Abstract Geometric Shapes */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-10 left-10 w-8 h-8 bg-red-500 rounded-full opacity-20"></div>
+          <div className="absolute top-20 right-20 w-6 h-6 bg-blue-500 rounded-full opacity-20"></div>
+          <div className="absolute top-40 left-1/4 w-4 h-4 bg-yellow-500 rounded-full opacity-20"></div>
+          <div className="absolute top-60 right-1/3 w-5 h-5 bg-green-500 rounded-full opacity-20"></div>
+          <div className="absolute bottom-20 left-20 w-6 h-6 border-2 border-red-500 rounded-full opacity-20"></div>
+          <div className="absolute bottom-40 right-10 w-4 h-4 border-2 border-blue-500 rounded-full opacity-20"></div>
+          <div className="absolute bottom-60 left-1/3 w-5 h-5 border-2 border-green-500 rounded-full opacity-20"></div>
+          <div className="absolute top-80 right-1/4 w-3 h-3 bg-yellow-500 rounded-full opacity-20"></div>
+          <div className="absolute top-32 left-1/2 w-4 h-4 bg-red-500 rounded-full opacity-20"></div>
+          <div className="absolute bottom-32 right-1/2 w-5 h-5 bg-blue-500 rounded-full opacity-20"></div>
         </div>
       </div>
     </section>
