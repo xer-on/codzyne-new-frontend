@@ -3,6 +3,7 @@ import Clients from "@/components/home/clients";
 import HeroSection from "@/components/home/heroSection";
 import Navbar from "@/components/navbar";
 import Solutions from "@/components/home/solutions";
+import Products from "@/components/home/products";
 
 export default function Home() {
   return (
@@ -21,6 +22,9 @@ export default function Home() {
 
       {/* Solutions Section */}
       <Solutions />
+
+      {/* Products Section */}
+      <Products />
     </div>
   );
 }
