@@ -65,23 +65,20 @@ const AboutUs = () => {
 
   return (
     <section ref={sectionRef} className="relative bg-white py-16 px-4 overflow-hidden">
-      {/* Hexagonal Pattern Background */}
-      <div className="absolute top-0 left-0 w-96 h-96 opacity-10">
-        <div className="relative w-full h-full">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-8 h-8 bg-gray-300 transform rotate-45"
-              style={{
-                left: `${(i % 5) * 20}%`,
-                top: `${Math.floor(i / 5) * 20}%`,
-                opacity: 1 - (i * 0.05)
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
+      {/* Background Image with left-to-right animation */}
+      <div 
+        className={`absolute inset-0 -left-23 transition-all duration-[1500ms] ease-out ${
+          isVisible ? ' translate-x-0' : 'opacity-0 -translate-x-full'
+        }`}
+        style={{
+          backgroundImage: 'url("https://mysoftltd.com/assets/hexagon.svg")',
+          backgroundSize: 'fill',
+          // backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          zIndex: 1
+        }}
+      />
+      
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
