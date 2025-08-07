@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import Solutions from "@/components/home/solutions";
 import Products from "@/components/home/products";
 import Mockup from "@/components/home/mockup";
+import Projects from "@/components/home/projects";
 
 export default function Home() {
   return (
@@ -29,6 +30,9 @@ export default function Home() {
 
       {/* Mockup Section */}
       <Mockup />
+
+      {/* Projects Section */}
+      <Projects />
     </div>
   );
 }
