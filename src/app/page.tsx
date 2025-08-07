@@ -4,6 +4,7 @@ import HeroSection from "@/components/home/heroSection";
 import Navbar from "@/components/navbar";
 import Solutions from "@/components/home/solutions";
 import Products from "@/components/home/products";
+import Mockup from "@/components/home/mockup";
 
 export default function Home() {
   return (
@@ -25,6 +26,9 @@ export default function Home() {
 
       {/* Products Section */}
       <Products />
+
+      {/* Mockup Section */}
+      <Mockup />
     </div>
   );
 }
