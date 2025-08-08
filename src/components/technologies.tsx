@@ -39,7 +39,7 @@ const Technologies: React.FC = () => {
 
   // Pre-calculate animation delays to avoid runtime calculations
   const animationDelays = useMemo(() => 
-    technologies.map((_, index) => 100 + (index * 50)), []
+    technologies.map((_, index) => 100 + (index * 100)), []
   );
 
   useEffect(() => {
