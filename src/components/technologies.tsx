@@ -1,5 +1,6 @@
+"use client"
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 interface Technology {
   name: string;
@@ -32,8 +33,40 @@ const technologies: Technology[] = [
 ];
 
 const Technologies: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    const [entry] = entries;
+    if (entry.isIntersecting && !isVisible) {
+      setIsVisible(true);
+    }
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    observerRef.current = new IntersectionObserver(handleIntersection, {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    if (sectionRef.current) {
+      observerRef.current.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [handleIntersection]);
+
   return (
-    <section className="py-16 px-4 bg-white">
+    <section ref={sectionRef} className="py-16 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12">
@@ -54,7 +87,13 @@ const Technologies: React.FC = () => {
           {technologies.map((tech, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-md p-4 sm:p-6 text-center hover:shadow-lg transition-shadow duration-300 border border-gray-100 w-[calc(50%-8px)] sm:w-[200px]"
+              className={`bg-white rounded-lg shadow-md p-4 sm:p-6 text-center hover:shadow-lg transition-all duration-500 border border-gray-100 w-[calc(50%-8px)] sm:w-[200px] ${
+                isVisible ? 'animate-slide-up opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{
+                animationDelay: isVisible ? `${100 + (index * 30)}ms` : '0ms',
+                animationFillMode: 'both'
+              }}
             >
               <div className={`text-2xl sm:text-3xl font-bold mb-2 sm:mb-3 ${tech.color} flex justify-center items-center`}>
                   <Image 
