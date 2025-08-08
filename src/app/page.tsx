@@ -6,6 +6,7 @@ import Solutions from "@/components/home/solutions";
 import Products from "@/components/home/products";
 import Mockup from "@/components/home/mockup";
 import Projects from "@/components/home/projects";
+import Technologies from "@/components/technologies";
 
 export default function Home() {
   return (
@@ -33,6 +34,9 @@ export default function Home() {
 
       {/* Projects Section */}
       <Projects />
+
+      {/* Technologies Section */}
+      <Technologies />
     </div>
   );
 }
