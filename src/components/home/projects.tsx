@@ -101,7 +101,7 @@ const Projects = () => {
             Projects We have <span className="text-[#007040]">Worked</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            During the Journey of its operation, MySoft Limited has achieved numerous clients all over the
+            During the Journey of its operation, CodeZyne Limited has achieved numerous clients all over the
             country. Right now we are serving 200+ honorable clients countrywide such as – Combined
             Military Hospital, Bangladesh Navy, Bangabandhu Sheikh Mujib Medical University (BSMMU),
             Delta Hospital Limited, BRAC Healthcare Limited etc.

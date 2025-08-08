@@ -36,7 +36,7 @@ const Solutions = () => {
             </h2>
             
             <p className="text-lg md:text-xl max-w-4xl mx-auto mb-8 leading-relaxed">
-              MySoft Limited provides the best customer-centric and efficient HIS in healthcare sector of our country among 200+ clients countrywide, named Medicare. Currently, we have 4 versions of Medicare operational:
+              CodeZyne Limited provides the best customer-centric and efficient HIS in healthcare sector of our country among 200+ clients countrywide, named Medicare. Currently, we have 4 versions of Medicare operational:
             </p>
             
             {/* Version Tags */}
