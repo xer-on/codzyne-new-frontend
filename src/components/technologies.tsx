@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image';
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 
 interface Technology {
   name: string;
@@ -29,7 +29,7 @@ const technologies: Technology[] = [
   { name: 'Typescript', icon: '/logo/typescript.svg', color: 'text-blue-600',  },
   { name: 'Puppeteer', icon: '/logo/puppeteer.svg', color: 'text-green-600',  },
   { name: 'Express.js', icon: '/logo/express.svg', color: 'text-black',  },
-  { name: 'SQL', icon: '/logo/sql.svg', color: 'text-yellow-600',  },
+  { name: 'Figma', icon: '/logo/figma.svg', color: 'text-yellow-600',  },
 ];
 
 const Technologies: React.FC = () => {
@@ -37,25 +37,34 @@ const Technologies: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
-    const [entry] = entries;
-    if (entry.isIntersecting && !isVisible) {
-      setIsVisible(true);
-    }
-  }, [isVisible]);
+  // Pre-calculate animation delays to avoid runtime calculations
+  const animationDelays = useMemo(() => 
+    technologies.map((_, index) => 100 + (index * 50)), []
+  );
 
   useEffect(() => {
+    const currentRef = sectionRef.current;
+    
     if (observerRef.current) {
       observerRef.current.disconnect();
     }
 
-    observerRef.current = new IntersectionObserver(handleIntersection, {
-      threshold: 0.2,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        // Use requestAnimationFrame for smoother state updates
+        requestAnimationFrame(() => {
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -20px 0px'
+      }
+    );
 
-    if (sectionRef.current) {
-      observerRef.current.observe(sectionRef.current);
+    if (currentRef) {
+      observerRef.current.observe(currentRef);
     }
 
     return () => {
@@ -63,7 +72,7 @@ const Technologies: React.FC = () => {
         observerRef.current.disconnect();
       }
     };
-  }, [handleIntersection]);
+  }, []);
 
   return (
     <section ref={sectionRef} className="py-16 px-4 bg-white">
@@ -87,12 +96,16 @@ const Technologies: React.FC = () => {
           {technologies.map((tech, index) => (
             <div
               key={index}
-              className={`bg-white rounded-lg shadow-md p-4 sm:p-6 text-center hover:shadow-lg transition-all duration-500 border border-gray-100 w-[calc(50%-8px)] sm:w-[200px] ${
-                isVisible ? 'animate-slide-up opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              className={`bg-white rounded-lg shadow-md p-4 sm:p-6 text-center hover:shadow-lg transition-transform duration-200 border border-gray-100 w-[calc(50%-8px)] sm:w-[200px] ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
               style={{
-                animationDelay: isVisible ? `${100 + (index * 30)}ms` : '0ms',
-                animationFillMode: 'both'
+                transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+                opacity: isVisible ? 1 : 0,
+                transitionDelay: isVisible ? `${animationDelays[index]}ms` : '0ms',
+                transitionProperty: 'transform, opacity',
+                transitionDuration: '600ms',
+                willChange: 'transform, opacity'
               }}
             >
               <div className={`text-2xl sm:text-3xl font-bold mb-2 sm:mb-3 ${tech.color} flex justify-center items-center`}>
