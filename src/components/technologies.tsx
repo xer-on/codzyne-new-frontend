@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 interface Technology {
@@ -7,10 +8,12 @@ interface Technology {
 }
 
 const technologies: Technology[] = [
-  { name: 'Angular', icon: 'A', color: 'text-red-600' },
-  { name: 'Maven', icon: 'M', color: 'text-orange-500' },
-  { name: 'NGINX', icon: 'N', color: 'text-green-600' },
-  { name: 'C Sharp', icon: 'C#', color: 'text-green-600' },
+  { name: 'React', icon: '/logo/react.svg', color: 'text-red-600' },
+  { name: 'Next.js', icon: 'M', color: 'text-orange-500' },
+  { name: 'Node.js', icon: 'N', color: 'text-green-600' },
+  { name: 'Tailwind CSS', icon: 'C#', color: 'text-green-600' },
+  { name: 'Bootstrap', icon: 'B', color: 'text-purple-600' },
+  { name: 'MongoDB', icon: 'M', color: 'text-blue-600' },
   { name: 'HTML 5', icon: '5', color: 'text-orange-500' },
   { name: 'CSS 3', icon: '3', color: 'text-blue-600' },
   { name: 'SASS', icon: 'S', color: 'text-pink-500' },
@@ -50,16 +53,16 @@ const Technologies: React.FC = () => {
         </div>
 
         {/* Technologies Grid */}
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
           {technologies.map((tech, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition-shadow duration-300 border border-gray-100 w-[200px]"
+              className="bg-white rounded-lg shadow-md p-4 sm:p-6 text-center hover:shadow-lg transition-shadow duration-300 border border-gray-100 w-[calc(50%-8px)] sm:w-[200px]"
             >
-              <div className={`text-3xl font-bold mb-3 ${tech.color}`}>
-                {tech.icon}
+              <div className={`text-2xl sm:text-3xl font-bold mb-2 sm:mb-3 ${tech.color}`}>
+                <Image src={tech.icon} alt={tech.name} width={100} height={100} className="w-10 h-10" />
               </div>
-              <p className="text-sm font-medium text-gray-800">
+              <p className="text-xs sm:text-sm font-medium text-gray-800">
                 {tech.name}
               </p>
             </div>
