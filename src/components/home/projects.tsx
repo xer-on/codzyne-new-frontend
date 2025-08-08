@@ -1,26 +1,21 @@
 "use client";
 import * as React from "react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
 
 interface ProjectCardProps {
   imageSrc: string;
   title: string;
-  description?: string;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
   imageSrc,
   title,
-  description,
 }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105 w-[300px] h-[300px] flex flex-col">
@@ -68,7 +63,6 @@ const projectsData = [
   {
     imageSrc: "/images/rangpur_community.png", // Placeholder
     title: "Rangpur Community Medical College & Hospital",
-    description: "Rangpur, Bangladesh",
   },
   {
     imageSrc: "/images/prime_medical.png", // Placeholder

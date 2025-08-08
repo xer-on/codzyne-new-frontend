@@ -5,33 +5,30 @@ interface Technology {
   name: string;
   icon: string;
   color: string;
+  isImage?: boolean;
 }
 
 const technologies: Technology[] = [
-  { name: 'React', icon: '/logo/react.svg', color: 'text-red-600' },
-  { name: 'Next.js', icon: 'M', color: 'text-orange-500' },
-  { name: 'Node.js', icon: 'N', color: 'text-green-600' },
-  { name: 'Tailwind CSS', icon: 'C#', color: 'text-green-600' },
-  { name: 'Bootstrap', icon: 'B', color: 'text-purple-600' },
-  { name: 'MongoDB', icon: 'M', color: 'text-blue-600' },
-  { name: 'HTML 5', icon: '5', color: 'text-orange-500' },
-  { name: 'CSS 3', icon: '3', color: 'text-blue-600' },
-  { name: 'SASS', icon: 'S', color: 'text-pink-500' },
-  { name: 'PHP', icon: 'php', color: 'text-blue-600' },
-  { name: 'MySQL', icon: 'SQL', color: 'text-blue-600' },
-  { name: 'Illustrator', icon: 'Ai', color: 'text-black' },
-  { name: 'Photoshop', icon: 'Ps', color: 'text-blue-600' },
-  { name: 'Bootstrap', icon: 'B', color: 'text-purple-600' },
-  { name: 'Dot Net', icon: '.NET', color: 'text-blue-600' },
-  { name: 'Oracle', icon: 'O', color: 'text-red-600' },
-  { name: 'Typescript', icon: 'TS', color: 'text-blue-600' },
-  { name: 'Tomcat', icon: '🐱', color: 'text-green-600' },
-  { name: 'Selenium', icon: 'Se', color: 'text-green-600' },
-  { name: 'Spring Boot', icon: '⚡', color: 'text-green-600' },
-  { name: 'Jaspersoft', icon: 'J', color: 'text-blue-600' },
-  { name: 'Java', icon: '☕', color: 'text-red-600' },
-  { name: 'Express.js', icon: 'ex', color: 'text-black' },
-  { name: 'SQL', icon: '💾', color: 'text-yellow-600' },
+  { name: 'React', icon: '/logo/react.svg', color: 'text-blue-500',  },
+  { name: 'Next.js', icon: '/logo/nextjs.svg', color: 'text-black',  },
+  { name: 'Node.js', icon: '/logo/nodejs.svg', color: 'text-green-600',  },
+  { name: 'Tailwind CSS', icon: '/logo/tailwind.svg', color: 'text-cyan-500',  },
+  { name: 'Bootstrap', icon: '/logo/bootstrap.svg', color: 'text-purple-600',  },
+  { name: 'MongoDB', icon: '/logo/mongodb.svg', color: 'text-green-600',  },
+  { name: 'HTML 5', icon: '/logo/html-5.svg', color: 'text-orange-500',  },
+  { name: 'CSS 3', icon: '/logo/css-3.svg', color: 'text-blue-600',  },
+  { name: 'SASS', icon: '/logo/sass.svg', color: 'text-pink-500',  },
+  { name: 'PHP', icon: '/logo/php.svg', color: 'text-purple-600',  },
+  { name: 'MySQL', icon: '/logo/mysql.svg', color: 'text-blue-600',  },
+  { name: 'Illustrator', icon: '/logo/adobe-illustrator.svg', color: 'text-orange-500',  },
+  { name: 'Photoshop', icon: '/logo/photoshop.svg', color: 'text-blue-600',  },
+  { name: 'Cloudflare', icon: '/logo/cloudflare.svg', color: 'text-purple-600',  },
+  { name: 'PostgreSQL', icon: '/logo/postgresql.svg', color: 'text-purple-600',  },
+  { name: 'Laravel', icon: '/logo/laravel.svg', color: 'text-red-600',  },
+  { name: 'Typescript', icon: '/logo/typescript.svg', color: 'text-blue-600',  },
+  { name: 'Puppeteer', icon: '/logo/puppeteer.svg', color: 'text-green-600',  },
+  { name: 'Express.js', icon: '/logo/express.svg', color: 'text-black',  },
+  { name: 'SQL', icon: '/logo/sql.svg', color: 'text-yellow-600',  },
 ];
 
 const Technologies: React.FC = () => {
@@ -59,8 +56,14 @@ const Technologies: React.FC = () => {
               key={index}
               className="bg-white rounded-lg shadow-md p-4 sm:p-6 text-center hover:shadow-lg transition-shadow duration-300 border border-gray-100 w-[calc(50%-8px)] sm:w-[200px]"
             >
-              <div className={`text-2xl sm:text-3xl font-bold mb-2 sm:mb-3 ${tech.color}`}>
-                <Image src={tech.icon} alt={tech.name} width={100} height={100} className="w-10 h-10" />
+              <div className={`text-2xl sm:text-3xl font-bold mb-2 sm:mb-3 ${tech.color} flex justify-center items-center`}>
+                  <Image 
+                    src={tech.icon} 
+                    alt={tech.name} 
+                    width={40} 
+                    height={40} 
+                    className="w-10 h-10 object-contain"
+                  />
               </div>
               <p className="text-xs sm:text-sm font-medium text-gray-800">
                 {tech.name}
