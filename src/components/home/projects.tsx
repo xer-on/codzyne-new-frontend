@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -11,14 +12,26 @@ import Image from "next/image";
 interface ProjectCardProps {
   imageSrc: string;
   title: string;
+  isVisible: boolean;
+  animationDelay: number;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
   imageSrc,
   title,
+  isVisible,
+  animationDelay,
 }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105 w-[300px] h-[300px] flex flex-col">
+    <div 
+      className={`bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-700 w-[300px] h-[300px] flex flex-col hover:scale-105 ${
+        isVisible ? 'animate-slide-up opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+      }`}
+      style={{
+        animationDelay: isVisible ? `${animationDelay}ms` : '0ms',
+        animationFillMode: 'both'
+      }}
+    >
       <div className="relative h-[200px] w-full">
         <Image
           src={imageSrc}
@@ -79,8 +92,33 @@ const projectsData = [
 ];
 
 const Projects = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.1, // Trigger when 10% of the section is visible (earlier trigger)
+        rootMargin: '0px 0px -100px 0px' // More negative margin to trigger earlier
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className="py-16 bg-gray-50 relative overflow-hidden">
+    <section ref={sectionRef} className="py-16 bg-gray-50 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 relative">
           {/* Background title */}
@@ -105,7 +143,7 @@ const Projects = () => {
         <div className="relative pt-20">
           <Carousel
             opts={{
-              align: "center",
+              align: "start",
               loop: true,
               
             }}
@@ -115,7 +153,11 @@ const Projects = () => {
               {projectsData.map((project, index) => (
                 <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/5">
                   <div className="flex justify-center">
-                    <ProjectCard {...project} />
+                    <ProjectCard 
+                      {...project} 
+                      isVisible={isVisible}
+                      animationDelay={200 + (index * 100)} // Staggered animation delays
+                    />
                   </div>
                 </CarouselItem>
               ))}
