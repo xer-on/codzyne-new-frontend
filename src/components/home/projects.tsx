@@ -87,20 +87,20 @@ const projectsData = [
 const Projects = () => {
   return (
     <section className="py-16 bg-gray-50 relative overflow-hidden">
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <span className="text-[20rem] font-extrabold text-gray-200 opacity-5">
-          200+
-        </span>
-      </div>
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <p className="text-[#007040] text-sm font-semibold mb-2 uppercase">
+        <div className="text-center mb-12 relative">
+          {/* Background title */}
+          <h2 className="text-[10rem] md:text-[12rem] lg:text-[26rem] font-bold text-gray-200 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 whitespace-nowrap overflow-hidden">
+            200+
+          </h2>
+          
+          <p className="text-[#007040] text-sm font-semibold mb-2 uppercase relative z-10">
             OUR PROJECTS
           </p>
-          <h2 className="text-5xl font-extrabold text-gray-800 mb-4">
+          <h2 className="text-5xl font-extrabold text-gray-800 mb-4 relative z-10">
             Projects We have <span className="text-[#007040]">Worked</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto relative z-10">
             During the Journey of its operation, CodeZyne Limited has achieved numerous clients all over the
             country. Right now we are serving 200+ honorable clients countrywide such as – Combined
             Military Hospital, Bangladesh Navy, Bangabandhu Sheikh Mujib Medical University (BSMMU),
@@ -108,10 +108,10 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="relative">
+        <div className="relative pt-20">
           <Carousel
             opts={{
-              align: "start",
+              align: "center",
               loop: true,
               
             }}
@@ -119,8 +119,10 @@ const Projects = () => {
           >
             <CarouselContent className="-ml-4 h-[400px]">
               {projectsData.map((project, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/5 ">
-                  <ProjectCard {...project} />
+                <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/5">
+                  <div className="flex justify-center">
+                    <ProjectCard {...project} />
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -129,7 +131,7 @@ const Projects = () => {
           </Carousel>
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center ">
           <Button className="bg-[#007040] hover:bg-[#005a33] text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
             Watch More
           </Button>
