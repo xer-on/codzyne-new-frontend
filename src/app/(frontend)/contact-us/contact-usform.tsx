@@ -65,7 +65,8 @@ export default function ContactForm() {
       setName("")
       setPhone("")
       setMessage("")
-    } catch (err: any) {
+    } catch (err: unknown) {
+      console.log(err)
     //   toast({
     //     title: "Something went wrong",
     //     description: err?.message ?? "Please try again.",
