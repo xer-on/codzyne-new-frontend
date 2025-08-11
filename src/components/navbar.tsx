@@ -9,13 +9,13 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-gray-900 tracking-tight">CodeZyne</h1>
+             <Link href={"/"}> <h1 className="text-2xl font-bold text-gray-900 tracking-tight">CodeZyne</h1></Link>
             </div>
             
             {/* Navigation Links */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                <Link href="#" className="text-gray-900 hover:text-yellow-600 px-3 py-2 text-sm font-medium transition-colors duration-200">
+                <Link href="/" className="text-gray-900 hover:text-yellow-600 px-3 py-2 text-sm font-medium transition-colors duration-200">
                   Home
                 </Link>
                 <Link href="/services" className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors duration-200">
