@@ -97,7 +97,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Team Stats */}
+        {/* Team Stats {s|} */}
         <Card className="p-8 mb-16">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">By the numbers</h2>
