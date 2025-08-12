@@ -11,7 +11,7 @@ export default function AboutPage() {
         <div className="mb-12 text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">About us</h1>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-            We're a passionate team dedicated to delivering innovative solutions that help businesses thrive in the
+            We&apos;re a passionate team dedicated to delivering innovative solutions that help businesses thrive in the
             digital age. Our mission is to bridge the gap between technology and human needs.
           </p>
         </div>
@@ -129,7 +129,7 @@ export default function AboutPage() {
           <Globe className="w-12 h-12 mx-auto mb-4 opacity-90" />
           <h2 className="text-3xl font-bold mb-4">Ready to work with us?</h2>
           <p className="text-green-100 text-lg mb-8 max-w-2xl mx-auto">
-            Let's discuss how we can help transform your business with innovative solutions tailored to your needs.
+            Let&apos;s discuss how we can help transform your business with innovative solutions tailored to your needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100">

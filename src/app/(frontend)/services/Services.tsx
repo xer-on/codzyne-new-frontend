@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Code, Smartphone, Globe, Database, Shield, Zap, CheckCircle, ArrowRight } from "lucide-react"
+import { Code, Smartphone, Globe, Database, Shield, Zap, CheckCircle } from "lucide-react"
 import Link from "next/link"
 
 export default function ServicesPage() {

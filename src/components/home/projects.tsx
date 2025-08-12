@@ -36,9 +36,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <Image
           src={imageSrc}
           alt={title}
-          layout="fill"
-          objectFit="contain"
-          className="p-4"
+          fill
+          className="p-4 object-contain"
         />
       </div>
       <div className="p-4 text-center flex-grow flex items-center justify-center">
