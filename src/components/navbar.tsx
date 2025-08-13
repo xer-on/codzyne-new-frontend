@@ -51,6 +51,9 @@ const Navbar = () => {
                   <Link href="/about" className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors duration-200">
                     About Us
                   </Link>
+                  <Link href="/members" className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors duration-200">
+                    Members
+                  </Link>
                   <Link href="/contact-us" className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors duration-200">
                     Contact
                   </Link>
@@ -105,6 +108,13 @@ const Navbar = () => {
                           onClick={closeMenu}
                         >
                           About Us
+                        </Link>
+                        <Link 
+                          href="/members" 
+                          className="text-gray-600 hover:text-gray-900 px-3 py-3 text-lg font-medium transition-colors duration-200 border-b border-gray-100"
+                          onClick={closeMenu}
+                        >
+                          Members
                         </Link>
                         <Link 
                           href="/contact-us" 

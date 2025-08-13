@@ -1,5 +1,27 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment
+
+Create a `.env.local` file at the project root with:
+
+```
+MONGODB_URI=mongodb+srv://<user>:<pass>@<cluster>/<db>?retryWrites=true&w=majority
+MONGODB_DB_NAME=codezyne
+JWT_SECRET=replace-with-a-strong-random-secret
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=change-me
+ADMIN_NAME=Admin
+ADMIN_SEED_TOKEN=run-once-secret
+```
+
+Seed the first admin (one-time):
+
+```
+curl -X POST "http://localhost:3000/api/admin/seed?token=run-once-secret"
+```
+
+Then login at `/login` with the seeded email/password. Dashboard routes under `/dashboard` are protected.
+
 ## Getting Started
 
 First, run the development server:
