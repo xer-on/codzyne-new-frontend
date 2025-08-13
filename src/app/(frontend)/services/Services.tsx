@@ -67,8 +67,8 @@ export default function ServicesPage() {
             return (
               <Card key={index} className="p-6 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <IconComponent className="w-6 h-6 text-green-600" />
+                  <div className="p-2 bg-[#fdc6002d] rounded-lg">
+                    <IconComponent className="w-6 h-6 text-[#fdc700]" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900">{service.title}</h3>
                 </div>
@@ -98,7 +98,7 @@ export default function ServicesPage() {
               Contact us today to discuss your project requirements and get a custom quote tailored to your needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-green-600 hover:bg-green-700 text-white">
+              <Button className="bg-[#fdc700] hover:bg-[#c79d03] text-white">
                 <Link href={"contact-us"}>Contact US</Link>
               </Button>
             
