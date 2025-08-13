@@ -1,7 +1,6 @@
 export const runtime = "nodejs";
 import { connectToDatabase } from "@/lib/mongoose";
 import AdminModel from "@/models/Admin";
-import bcrypt from "bcryptjs";
 import { createSession } from "@/lib/auth";
 
 export async function POST(req: Request) {
@@ -17,7 +16,7 @@ export async function POST(req: Request) {
     if (!admin) {
       return new Response(JSON.stringify({ success: false, message: "Invalid credentials" }), { status: 401 });
     }
-    const ok = await bcrypt.compare(normalizedPassword, admin.passwordHash);
+    const ok = normalizedPassword === admin.password;
     if (!ok) {
       return new Response(JSON.stringify({ success: false, message: "Invalid credentials" }), { status: 401 });
     }
