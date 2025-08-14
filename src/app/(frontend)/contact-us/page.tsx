@@ -4,9 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import ContactForm from "./contact-usform"
 
-const BUSINESS_NAME = "Acme Inc."
-const BUSINESS_ADDRESS = "123 Market St, San Francisco, CA 94103"
-const BUSINESS_PHONE = "+1 (415) 555-0199"
+const BUSINESS_NAME = "CodeZyne"
+const BUSINESS_ADDRESS = "679 West kazipara, Mirpur Dhaka 1216."
+const BUSINESS_PHONE = "+880 1874-413876"
 
 export default function ContactPage() {
   const mapsEmbedSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.6036736406604!2d90.36971337607315!3d23.797123486979796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c10048ab6a11%3A0xf409eaf0a6f2e79c!2sCodezyne!5e0!3m2!1sen!2sbd!4v1754828766723!5m2!1sen!2sbd"

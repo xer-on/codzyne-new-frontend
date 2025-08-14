@@ -14,6 +14,7 @@ export async function POST(req: Request) {
       return new Response(JSON.stringify({ success: false, message: "Missing email or password" }), { status: 400 });
     }
     const admin = await AdminModel.findOne({ email: normalizedEmail });
+
     if (!admin) {
       return new Response(JSON.stringify({ success: false, message: "Invalid credentials" }), { status: 401 });
     }
@@ -24,6 +25,7 @@ export async function POST(req: Request) {
     await createSession(admin._id.toString());
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (e) {
+    console.log('e at 28', e)
     return new Response(JSON.stringify({ success: false, message: "Login failed" }), { status: 500 });
   }
 }
