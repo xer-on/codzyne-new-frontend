@@ -19,6 +19,7 @@ export interface IClient {
   updatedAt?: Date;
 }
 
+
 // Component for fetching and displaying clients data
 function ClientsData() {
   const [clients, setClients] = useState<IClient[]>([]);
