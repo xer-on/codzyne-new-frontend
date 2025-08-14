@@ -28,7 +28,6 @@ export function ClientShowcase({ clients }: ClientShowcaseProps) {
     }
   }
 
-  console.log('clients', clients)
 
   return (
     <section className="py-16 px-4 bg-gradient-to-b to-muted/20">
