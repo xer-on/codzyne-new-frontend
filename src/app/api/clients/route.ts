@@ -26,6 +26,7 @@ export async function GET() {
     const clients = await ClientModel.find({}).sort({ createdAt: -1 }).lean();
     return Response.json({ success: true, data: clients });
   } catch (error) {
+    console.log(error);
     return new Response(
       JSON.stringify({ success: false, message: "Failed to fetch clients" }),
       { status: 500 }
@@ -69,6 +70,7 @@ export async function POST(req: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
+    console.log(error);
     return new Response(
       JSON.stringify({ success: false, message: "Failed to create client" }),
       { status: 500 }

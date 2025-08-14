@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import Link from "next/link"
 
 export default function Footer() {
   return (
@@ -19,9 +20,11 @@ export default function Footer() {
               Leading IT company in Bangladesh providing secure, scalable, on-demand application systems and data
               solutions to help customers improve their business performance.
             </p>
-            <Button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md text-sm font-medium">
-              Get Started
-            </Button>
+            <Link href="/contact">
+              <Button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md text-sm font-medium">
+                Get Started
+              </Button>
+            </Link>
           </div>
 
           {/* Services */}

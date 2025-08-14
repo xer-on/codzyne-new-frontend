@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { toast } from "sonner"
+import Image from "next/image"
 
 type CreateClientFormState = {
   companyName: string
@@ -69,7 +70,9 @@ export default function AddClientPage() {
         logoUrl: "",
       })
     } catch (error) {
-      toast.error("Error creating client")
+      toast.error("Error creating client", {
+        description: error instanceof Error ? error.message : "Unknown error",
+      })
     } finally {
       setIsSubmitting(false)
     }
@@ -114,7 +117,7 @@ export default function AddClientPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="clientType">Client Type</Label>
-                <Select value={form.clientType} onValueChange={(value:any) => updateField("clientType", value)}>
+                <Select value={form.clientType} onValueChange={(value: string) => updateField("clientType", value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select client type" />
                   </SelectTrigger>
@@ -153,9 +156,11 @@ export default function AddClientPage() {
                 <div className="mt-3">
                   <p className="text-sm text-gray-600 mb-2">Logo Preview:</p>
                   <div className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-gray-50">
-                    <img
+                    <Image
                       src={form.logoUrl}
                       alt="Company logo preview"
+                      width={100}
+                      height={100}
                       className="max-w-full max-h-full object-contain rounded"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement

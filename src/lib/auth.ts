@@ -39,7 +39,6 @@ export async function verifyAuthToken(token: string) {
 export async function getSession(): Promise<{ adminId: string } | null> {
   const cookieStore = await cookies();
   const token = cookieStore.get(SESSION_COOKIE)?.value;
-  const token = (await cookies()).get(SESSION_COOKIE)?.value;
   if (!token) return null;
   try {
     const payload = await verifyAuthToken(token);

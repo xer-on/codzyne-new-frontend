@@ -71,7 +71,7 @@ export function ClientShowcase({ clients }: ClientShowcaseProps) {
               WebkitOverflowScrolling: "touch",
             }}
           >
-            {clients.map((client, index) => (
+            {clients.map((client) => (
               <Card
                 key={client.companyName}
                 className="group relative p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 cursor-pointer border-2 hover:border-emerald-200 flex-shrink-0 w-40"
