@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import { connectToDatabase } from "../src/lib/mongoose";
 import AdminModel from "../src/models/Admin";
 
@@ -24,7 +25,8 @@ async function main() {
     process.exit(0);
   }
 
-  const created = await AdminModel.create({ email, password, name });
+  const passwordHash = await bcrypt.hash(password, 10);
+  const created = await AdminModel.create({ email, passwordHash, name });
   console.log("✓ Admin created:", created.email);
   process.exit(0);
 }

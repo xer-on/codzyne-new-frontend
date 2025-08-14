@@ -1,13 +1,14 @@
 export const runtime = "nodejs";
 import { connectToDatabase } from "@/lib/mongoose";
 import AdminModel from "@/models/Admin";
-import { createSession, SESSION_COOKIE } from "@/lib/auth";
-import { NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
+import { createSession } from "@/lib/auth";
 
 export async function POST(req: Request) {
   try {
     await connectToDatabase();
     const { email, password } = await req.json();
+    console.log('email', email)
     const normalizedEmail = String(email ?? "").trim().toLowerCase();
     const normalizedPassword = String(password ?? "").trim();
     if (!normalizedEmail || !normalizedPassword) {
@@ -15,23 +16,21 @@ export async function POST(req: Request) {
     }
     const admin = await AdminModel.findOne({ email: normalizedEmail });
 
+    console.log('admin', admin);
     if (!admin) {
       return new Response(JSON.stringify({ success: false, message: "Invalid credentials" }), { status: 401 });
     }
-    const ok = normalizedPassword === admin.password;
-    if (!ok) {
+
+    const isMatch = await bcrypt.compare(normalizedPassword, admin.passwordHash);
+
+    console.log('isMatch', isMatch)
+    if (!isMatch) {
       return new Response(JSON.stringify({ success: false, message: "Invalid credentials" }), { status: 401 });
     }
-    const token = await createSession(admin._id.toString());
-    const res = NextResponse.json({ success: true }, { status: 200 });
-    res.cookies.set(SESSION_COOKIE, token, {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60 * 24 * 7,
-      path: "/",
-    });
-    return res;
+
+    // If matched, create session
+    await createSession(admin._id.toString());
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (e) {
     console.log('e at 28', e)
     return new Response(JSON.stringify({ success: false, message: "Login failed" }), { status: 500 });
