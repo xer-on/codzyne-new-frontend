@@ -1,6 +1,7 @@
 export const runtime = "nodejs";
 import { connectToDatabase } from "@/lib/mongoose";
 import AdminModel from "@/models/Admin";
+import bcrypt from "bcryptjs";
 
 export async function POST(req: Request) {
   const url = new URL(req.url);
@@ -18,16 +19,10 @@ export async function POST(req: Request) {
   await connectToDatabase();
   const existing = await AdminModel.findOne({ email: email.toLowerCase() });
   if (existing) {
-    await AdminModel.updateOne(
-      { _id: existing._id },
-      { $set: { password, name }, $unset: { passwordHash: "" } }
-    );
-    return new Response(
-      JSON.stringify({ success: true, message: "Admin updated" }),
-      { status: 200 }
-    );
+    return new Response(JSON.stringify({ success: true, message: "Admin already exists" }), { status: 200 });
   }
-  await AdminModel.create({ email: email.toLowerCase(), password, name });
+  const passwordHash = await bcrypt.hash(password, 10);
+  await AdminModel.create({ email: email.toLowerCase(), passwordHash, name });
   return new Response(JSON.stringify({ success: true }), { status: 201 });
 }
 
