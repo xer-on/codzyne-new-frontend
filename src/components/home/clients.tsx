@@ -1,6 +1,6 @@
 "use client"
 
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { ClientShowcase } from './Client-showcase';
 
 export interface IClient {
@@ -19,20 +19,24 @@ export interface IClient {
   updatedAt?: Date;
 }
 
-// Async component for fetching clients data
-async function ClientsData() {
-  const res = await fetch("/api/clients", { cache: "no-store" });
-  const data = await res.json();
-  
-  if (!res.ok || !data?.success) {
-    throw new Error("Failed to load clients");
+// Component for fetching and displaying clients data
+function ClientsData() {
+  const [clients, setClients] = useState<IClient[]>([]);
+
+  const fetchClients = async () => {
+    try {
+      const res = await fetch("/api/clients", { cache: "no-store" });
+      const data = await res.json();
+      const clientsData = data.data as IClient[];
+      setClients(clientsData);
+    } catch (error) {
+      console.error("Error fetching clients:", error);
+    }
   }
-  
-  const clients = data.data as IClient[];
-  
-  if (!clients || clients.length === 0) {
-    return null;
-  }
+
+  useEffect(() => {
+    fetchClients();
+  }, []);
   
   return (
     <div>
