@@ -15,7 +15,7 @@ export async function createSession(adminId: string): Promise<string> {
     .setIssuedAt()
     .setExpirationTime("7d")
     .sign(getJwtSecret());
-  cookies().set(SESSION_COOKIE, token, {
+  (await cookies()).set(SESSION_COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
@@ -26,7 +26,7 @@ export async function createSession(adminId: string): Promise<string> {
 }
 
 export async function destroySession() {
-  cookies().delete(SESSION_COOKIE);
+  (await cookies()).delete(SESSION_COOKIE);
 }
 
 export async function verifyAuthToken(token: string) {
@@ -35,7 +35,7 @@ export async function verifyAuthToken(token: string) {
 }
 
 export async function getSession(): Promise<{ adminId: string } | null> {
-  const token = cookies().get(SESSION_COOKIE)?.value;
+  const token = (await cookies()).get(SESSION_COOKIE)?.value;
   if (!token) return null;
   try {
     const payload = await verifyAuthToken(token);

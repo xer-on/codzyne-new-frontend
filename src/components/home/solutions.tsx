@@ -5,6 +5,7 @@ import Image from 'next/image';
 const Solutions = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -27,6 +28,8 @@ const Solutions = () => {
       }
     };
   }, []);
+
+
   return (
     <section ref={sectionRef} className="w-full relative bg-[url('https://mysoftltd.com/assets/solution-bg-2.svg')] bg-cover bg-center">
       {/* Top Section - Dark Background */}

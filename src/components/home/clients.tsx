@@ -43,9 +43,6 @@ const Clients = () => {
     load();
   }, []);
 
-  console.log('clients', clients)
-
-
   return clients && clients.length > 0  && (
     <div>
       <section className="bg-gray-100 py-16 md:py-20">
