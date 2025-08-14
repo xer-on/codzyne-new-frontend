@@ -37,6 +37,10 @@ function ClientsData() {
   useEffect(() => {
     fetchClients();
   }, []);
+
+
+  if(clients && clients.length === 0) return <p></p>;
+
   
   return (
     <div>
