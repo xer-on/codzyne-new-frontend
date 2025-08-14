@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -54,10 +55,12 @@ const Members = () => {
               <div key={m._id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                 <div className="bg-gradient-to-br from-yellow-400 to-yellow-500 h-48 flex items-center justify-center">
                   {m.avatarUrl ? (
-                    <img
+                    <Image
                       src={m.avatarUrl}
                       alt={m.name}
                       className="rounded-full w-24 h-24 object-cover border-4 border-white"
+                      width={96}
+                      height={96}
                     />
                   ) : (
                     <div className="text-6xl text-white">👤</div>
@@ -78,7 +81,7 @@ const Members = () => {
 
         <div className="text-center bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Join Our Team</h2>
-          <p className="text-lg text-gray-600 mb-6">We're always looking for talented individuals to join our growing team</p>
+          <p className="text-lg text-gray-600 mb-6">We&apos;re always looking for talented individuals to join our growing team</p>
           <button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-8 py-3 rounded-md transition-all duration-200 transform hover:scale-105">
             View Open Positions
           </button>

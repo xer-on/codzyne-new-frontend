@@ -20,6 +20,7 @@ export async function GET() {
     const members = await MemberModel.find({}).sort({ createdAt: -1 }).lean();
     return Response.json({ success: true, data: members });
   } catch (error) {
+    console.error(error);
     return new Response(
       JSON.stringify({ success: false, message: "Failed to fetch members" }),
       { status: 500 }
@@ -38,7 +39,7 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-    const token = cookies().get("admin_session")?.value;
+    const token = (await cookies()).get("admin_session")?.value;
     if (!token) {
       return new Response(JSON.stringify({ success: false, message: "Unauthorized" }), { status: 401 });
     }
@@ -50,6 +51,7 @@ export async function POST(req: NextRequest) {
     const created = await MemberModel.create(parsed.data);
     return new Response(JSON.stringify({ success: true, data: created }), { status: 201 });
   } catch (error) {
+    console.error(error);
     return new Response(
       JSON.stringify({ success: false, message: "Failed to create member" }),
       { status: 500 }

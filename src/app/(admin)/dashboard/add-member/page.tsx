@@ -45,6 +45,7 @@ export default function AddMemberPage() {
       toast.success("Member created");
       setForm({ name: "", role: "", bio: "", email: "", avatarUrl: "" });
     } catch (error) {
+      console.error(error);
       toast.error("Error creating member");
     } finally {
       setIsSubmitting(false);

@@ -1,7 +1,8 @@
 export const runtime = "nodejs";
 import { connectToDatabase } from "@/lib/mongoose";
 import AdminModel from "@/models/Admin";
-import { createSession } from "@/lib/auth";
+import { createSession, SESSION_COOKIE } from "@/lib/auth";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
@@ -21,8 +22,16 @@ export async function POST(req: Request) {
     if (!ok) {
       return new Response(JSON.stringify({ success: false, message: "Invalid credentials" }), { status: 401 });
     }
-    await createSession(admin._id.toString());
-    return new Response(JSON.stringify({ success: true }), { status: 200 });
+    const token = await createSession(admin._id.toString());
+    const res = NextResponse.json({ success: true }, { status: 200 });
+    res.cookies.set(SESSION_COOKIE, token, {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 60 * 60 * 24 * 7,
+      path: "/",
+    });
+    return res;
   } catch (e) {
     console.log('e at 28', e)
     return new Response(JSON.stringify({ success: false, message: "Login failed" }), { status: 500 });
