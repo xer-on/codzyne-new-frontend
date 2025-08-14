@@ -154,7 +154,7 @@ export default function AddClientPage() {
                   <p className="text-sm text-gray-600 mb-2">Logo Preview:</p>
                   <div className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-gray-50">
                     <img
-                      src={form.logoUrl || "/placeholder.svg"}
+                      src={form.logoUrl}
                       alt="Company logo preview"
                       className="max-w-full max-h-full object-contain rounded"
                       onError={(e) => {

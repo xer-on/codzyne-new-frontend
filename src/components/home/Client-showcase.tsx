@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { IClient } from "./clients"
+import Image from "next/image"
 
 interface ClientShowcaseProps {
   clients: IClient[]
@@ -26,6 +27,8 @@ export function ClientShowcase({ clients }: ClientShowcaseProps) {
       scrollContainerRef.current.scrollBy({ left: 320, behavior: "smooth" })
     }
   }
+
+  console.log('clients', clients)
 
   return (
     <section className="py-16 px-4 bg-gradient-to-b to-muted/20">
@@ -84,14 +87,13 @@ export function ClientShowcase({ clients }: ClientShowcaseProps) {
                 {/* Logo Container */}
                 <div className="flex justify-center mb-3">
                   <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center overflow-hidden shadow-lg group-hover:shadow-emerald-200/50 transition-shadow duration-300">
-                    <img
-                      src={client.logoUrl || "/placeholder.svg"}
+                    <Image
+                      src={client.logoUrl || ""}
                       alt={`${client.companyName} logo`}
+                       width={100}
+                       height={100}
                       className="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-110"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement
-                        target.src = `/placeholder.svg?height=32&width=32&query=${encodeURIComponent(client.companyName + " logo")}`
-                      }}
+                    
                     />
                   </div>
                 </div>

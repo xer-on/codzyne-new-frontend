@@ -8,6 +8,7 @@ export async function POST(req: Request) {
   try {
     await connectToDatabase();
     const { email, password } = await req.json();
+    console.log('email', email)
     const normalizedEmail = String(email ?? "").trim().toLowerCase();
     const normalizedPassword = String(password ?? "").trim();
     if (!normalizedEmail || !normalizedPassword) {
@@ -15,12 +16,14 @@ export async function POST(req: Request) {
     }
     const admin = await AdminModel.findOne({ email: normalizedEmail });
 
+    console.log('admin', admin);
     if (!admin) {
       return new Response(JSON.stringify({ success: false, message: "Invalid credentials" }), { status: 401 });
     }
-    
+
     const isMatch = await bcrypt.compare(normalizedPassword, admin.passwordHash);
 
+    console.log('isMatch', isMatch)
     if (!isMatch) {
       return new Response(JSON.stringify({ success: false, message: "Invalid credentials" }), { status: 401 });
     }
