@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -82,9 +83,9 @@ const Members = () => {
         <div className="text-center bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Join Our Team</h2>
           <p className="text-lg text-gray-600 mb-6">We&apos;re always looking for talented individuals to join our growing team</p>
-          <button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-8 py-3 rounded-md transition-all duration-200 transform hover:scale-105">
+          <Link href={"careers"} className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-8 py-3 rounded-md transition-all duration-200 transform hover:scale-105">
             View Open Positions
-          </button>
+          </Link>
         </div>
       </div>
     </div>

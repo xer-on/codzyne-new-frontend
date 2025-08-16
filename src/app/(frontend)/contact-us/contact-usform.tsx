@@ -30,50 +30,33 @@ export default function ContactForm() {
     e.preventDefault()
     setErrors({})
 
-    const payload = { name: name.trim(), phone: phone.trim(), message: message.trim() }
-    const parsed = schema.safeParse(payload)
-    if (!parsed.success) {
-      const fieldErrors: Partial<Record<keyof FormInput, string>> = {}
-      for (const issue of parsed.error.issues) {
-        fieldErrors[issue.path[0] as keyof FormInput] = issue.message
-      }
-      setErrors(fieldErrors)
-    //   toast({
-    //     title: "Please review the form",
-    //     description: "Some fields need your attention.",
-    //     variant: "destructive",
-    //   })
-      return
-    }
+    const payload = { fullname: name.trim(), phone: phone.trim(), message: message.trim() }
 
-    setSubmitting(true)
+
+
+    setSubmitting(true);
+
     try {
-      const res = await fetch("/api/contact", {
+      const res:any = await fetch("/api/contact-form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed.data),
-      })
-      if (!res.ok) {
+        body: JSON.stringify(payload),
+      });
+      console.log('res', res);
+      if (!res.success) {
         const body = await res.json().catch(() => ({}))
         throw new Error(body?.error ?? "Failed to submit.")
       }
-    //   toast({
-    //     title: "Message sent",
-    //     description: "Thanks for reaching out! We’ll get back to you soon.",
-    //   })
+
       // Reset fields
       setName("")
       setPhone("")
       setMessage("")
     } catch (err: unknown) {
       console.log(err)
-    //   toast({
-    //     title: "Something went wrong",
-    //     description: err?.message ?? "Please try again.",
-    //     variant: "destructive",
-    //   })
+
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
   }
 
