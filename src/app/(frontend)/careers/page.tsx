@@ -75,7 +75,7 @@ export default function CareersPage() {
   // ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className=" bg-white">
       {/* Header */}
       {/* <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -247,93 +247,8 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-slate-800 text-white py-16">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-3xl font-bold mb-4">Don&apos;t See the Right Position?</h2>
-          <p className="text-xl text-gray-300 mb-8">
-            We&apos;re always looking for talented individuals. Send us your resume and we&apos;ll keep you in mind for future
-            opportunities.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-8 py-3">
-              Send Your Resume
-            </Button>
-            <Button
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-slate-800 px-8 py-3 bg-transparent"
-            >
-              Contact HR Team
-            </Button>
-          </div>
-        </div>
-      </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="text-2xl font-bold text-purple-400 mb-4">
-                <span className="text-purple-400">Code</span>
-                <span className="text-purple-300">Zyne</span>
-              </div>
-              <p className="text-gray-400">Leading IT company providing innovative laboratory information systems.</p>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Company</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <Link href="#" className="hover:text-white">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/careers" className="hover:text-white">
-                    Careers
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white">
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Services</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <Link href="#" className="hover:text-white">
-                    Laboratory Systems
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white">
-                    Data Solutions
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white">
-                    Support
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Contact Info</h3>
-              <div className="space-y-2 text-gray-400">
-                <p>Dhaka, Bangladesh</p>
-                <p>careers@codezyne.com</p>
-                <p>+880-XXX-XXXX</p>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 CodeZyne Limited. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+
     </div>
   )
 }
