@@ -1,9 +1,9 @@
 
 import { connectToDatabase } from "@/lib/mongoose";
 import ContactMessageModel from "@/models/Message";
-import { type NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     await connectToDatabase();
 

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Filters, MessageStats } from "@/app/(admin)/dashboard/messages/page"
 
 
@@ -18,13 +18,13 @@ export function ContactMessagesFilters({ filters, setFilters, total }: ContactMe
     setFilters({ ...filters, status, page: 1 })
   }
 
-  const handleSortChange = (sortBy: string) => {
-    setFilters({ ...filters, sortBy, page: 1 })
-  }
+  // const handleSortChange = (sortBy: string) => {
+  //   setFilters({ ...filters, sortBy, page: 1 })
+  // }
 
-  const handleWebsiteChange = (website: string) => {
-    setFilters({ ...filters, website, page: 1 })
-  }
+  // const handleWebsiteChange = (website: string) => {
+  //   setFilters({ ...filters, website, page: 1 })
+  // }
 
   return (
     <div className="flex items-center justify-between mb-6">

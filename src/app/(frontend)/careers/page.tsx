@@ -47,32 +47,32 @@ export default function CareersPage() {
     fetchJobs()
   }, [])
 
-  const benefits = [
-    {
-      title: "Competitive Salary",
-      description: "Industry-leading compensation packages with performance bonuses",
-    },
-    {
-      title: "Health Insurance",
-      description: "Comprehensive medical coverage for you and your family",
-    },
-    {
-      title: "Flexible Work",
-      description: "Hybrid work options with flexible hours to maintain work-life balance",
-    },
-    {
-      title: "Learning & Development",
-      description: "Continuous learning opportunities and professional development programs",
-    },
-    {
-      title: "Modern Office",
-      description: "State-of-the-art office space with latest technology and amenities",
-    },
-    {
-      title: "Team Events",
-      description: "Regular team building activities and company-wide celebrations",
-    },
-  ]
+  // const benefits = [
+  //   {
+  //     title: "Competitive Salary",
+  //     description: "Industry-leading compensation packages with performance bonuses",
+  //   },
+  //   {
+  //     title: "Health Insurance",
+  //     description: "Comprehensive medical coverage for you and your family",
+  //   },
+  //   {
+  //     title: "Flexible Work",
+  //     description: "Hybrid work options with flexible hours to maintain work-life balance",
+  //   },
+  //   {
+  //     title: "Learning & Development",
+  //     description: "Continuous learning opportunities and professional development programs",
+  //   },
+  //   {
+  //     title: "Modern Office",
+  //     description: "State-of-the-art office space with latest technology and amenities",
+  //   },
+  //   {
+  //     title: "Team Events",
+  //     description: "Regular team building activities and company-wide celebrations",
+  //   },
+  // ]
 
   return (
     <div className="min-h-screen bg-white">
@@ -250,9 +250,9 @@ export default function CareersPage() {
       {/* CTA Section */}
       <section className="bg-slate-800 text-white py-16">
         <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-3xl font-bold mb-4">Don't See the Right Position?</h2>
+          <h2 className="text-3xl font-bold mb-4">Don&apos;t See the Right Position?</h2>
           <p className="text-xl text-gray-300 mb-8">
-            We're always looking for talented individuals. Send us your resume and we'll keep you in mind for future
+            We&apos;re always looking for talented individuals. Send us your resume and we&apos;ll keep you in mind for future
             opportunities.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

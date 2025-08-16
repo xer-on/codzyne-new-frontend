@@ -2,8 +2,8 @@ import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { connectToDatabase } from "@/lib/mongoose";
 import ContactMessageModel from "@/models/Message";
-import { Resend } from 'resend';
-import { EmailTemplate } from "@/components/email-templates/template";
+// import { Resend } from 'resend';
+// import { EmailTemplate } from "@/components/email-templates/template";
 
 // Define a Zod schema for request validation
 const contactMessageSchema = z.object({
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
 
 
     return NextResponse.json({ success: true, data: newMessage });
-  } catch (error:any) {
+  } catch (error: unknown) {
     console.error("Error processing contact form:", error);
 
     // Handle Zod validation errors specifically

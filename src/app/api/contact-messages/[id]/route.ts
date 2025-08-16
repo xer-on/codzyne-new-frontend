@@ -3,31 +3,25 @@ import { connectToDatabase } from "@/lib/mongoose";
 import ContactMessageModel from "@/models/Message";
 import { type NextRequest, NextResponse } from "next/server"
 
-export async function GET(request: NextRequest, { params }: { params?: { id?: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     await connectToDatabase();
 
-    // If an id is provided, fetch a single message
-    if (params?.id) {
-      const message = await ContactMessageModel.findById(params.id);
-      if (!message) {
-        return NextResponse.json({ error: "Message not found" }, { status: 404 });
-      }
-      return NextResponse.json({ success: true, data: message });
+    const { id } = await params;
+    const message = await ContactMessageModel.findById(id);
+    if (!message) {
+      return NextResponse.json({ error: "Message not found" }, { status: 404 });
     }
-
-    // Otherwise, fetch all messages
-    const messages = await ContactMessageModel.find().sort({ createdAt: -1 }); // latest first
-    return NextResponse.json({ success: true, data: messages });
+    return NextResponse.json({ success: true, data: message });
   } catch (error) {
     console.error("Error fetching messages:", error);
     return NextResponse.json({ error: "Failed to fetch messages" }, { status: 500 });
   }
 }
 
-export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const id = params.id
+    const { id } = await params
     const body = await request.json()
 
     await connectToDatabase();
@@ -46,9 +40,9 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const id = params.id;
+    const { id } = await params;
 
     await connectToDatabase();
 

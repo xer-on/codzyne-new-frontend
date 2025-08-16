@@ -33,7 +33,7 @@ export type Filters = {
 
 export default function ContactMessagesPage() {
   const [messages, setMessages] = useState<ContactMessage[]>([])
-  const [stats, setStats] = useState<MessageStats>({ total: 0, unread: 0, replied: 0, archived: 0 })
+  const [stats] = useState<MessageStats>({ total: 0, unread: 0, replied: 0, archived: 0 })
   const [loading, setLoading] = useState(true)
   const [filters, setFilters] = useState<Filters>({
     search: "",
@@ -42,7 +42,7 @@ export default function ContactMessagesPage() {
     sortBy: "newest",
     page: 1,
   })
-  const [pagination, setPagination] = useState({
+  const [pagination] = useState({
     page: 1,
     limit: 10,
     total: 0,

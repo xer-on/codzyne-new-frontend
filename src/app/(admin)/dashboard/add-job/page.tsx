@@ -89,7 +89,7 @@ export default function AddJobPage() {
         throw new Error(error.message || "Failed to create job post")
       }
 
-      const result = await response.json()
+      // const result = await response.json()
 
 
       // Reset form
@@ -107,6 +107,7 @@ export default function AddJobPage() {
         contactEmail: "",
       })
     } catch (error) {
+      console.log(error)
 
     } finally {
       setIsLoading(false)

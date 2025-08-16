@@ -1,22 +1,17 @@
 "use client"
 
 import * as React from "react"
-import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Loader2, Phone, User, MessageSquareText } from "lucide-react"
 
-const schema = z.object({
-  name: z.string().min(2, "Please enter your full name."),
-  phone: z
-    .string()
-    .min(7, "Please enter a valid phone number.")
-    .refine((v) => /^[+()0-9 -]{7,}$/.test(v), "Please enter a valid phone number."),
-  message: z.string().min(10, "Please include at least 10 characters.").max(1000, "Max 1000 characters."),
-})
-type FormInput = z.infer<typeof schema>
+type FormInput = {
+  name: string
+  phone: string
+  message: string
+}
 
 export default function ContactForm() {
 //   const { toast } = useToast()
@@ -37,13 +32,13 @@ export default function ContactForm() {
     setSubmitting(true);
 
     try {
-      const res:any = await fetch("/api/contact-form", {
+      const res: Response = await fetch("/api/contact-form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
       console.log('res', res);
-      if (!res.success) {
+      if (!res.ok) {
         const body = await res.json().catch(() => ({}))
         throw new Error(body?.error ?? "Failed to submit.")
       }
