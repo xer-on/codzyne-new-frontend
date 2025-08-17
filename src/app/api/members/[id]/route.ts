@@ -3,11 +3,11 @@ import { NextRequest } from "next/server";
 import { connectToDatabase } from "@/lib/mongoose";
 import MemberModel from "@/models/Member";
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     await connectToDatabase();
 
-    const { id } = params;
+    const { id } = await params;
     if (!id) {
       return new Response(JSON.stringify({ success: false, message: "User ID is required" }), {
         status: 400,

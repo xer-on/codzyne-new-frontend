@@ -62,33 +62,33 @@ export default function TeamMemberSearch() {
     setSearchError("")
   }
 
-  const sampleIds = ["TM001", "TM002", "TM003"]
+  // const sampleIds = ["TM001", "TM002", "TM003"]
 
-  const handleSampleIdClick = async (id: string) => {
-    setSearchId(id)
-    setSearchError("")
-    setIsLoading(true)
+  // const handleSampleIdClick = async (id: string) => {
+  //   setSearchId(id)
+  //   setSearchError("")
+  //   setIsLoading(true)
 
-    try {
-      const response = await fetch(`/api/members/${id}`);
-      console.log('response', response);
+  //   try {
+  //     const response = await fetch(`/api/members/${id}`);
+  //     console.log('response', response);
 
-      const data = await response.json()
+  //     const data = await response.json()
 
-      if (response.ok) {
-        setSelectedMember(data.user)
-      } else {
-        setSelectedMember(null)
-        setSearchError(data.error || "Team member not found.")
-      }
-    } catch (error) {
-      console.error("Search error:", error)
-      setSelectedMember(null)
-      setSearchError("An error occurred while searching.")
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  //     if (response.ok) {
+  //       setSelectedMember(data.user)
+  //     } else {
+  //       setSelectedMember(null)
+  //       setSearchError(data.error || "Team member not found.")
+  //     }
+  //   } catch (error) {
+  //     console.error("Search error:", error)
+  //     setSelectedMember(null)
+  //     setSearchError("An error occurred while searching.")
+  //   } finally {
+  //     setIsLoading(false)
+  //   }
+  // }
 
 
   return (
