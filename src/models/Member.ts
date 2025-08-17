@@ -6,6 +6,7 @@ const MemberSchema = new Schema(
     role: { type: String, required: true, trim: true },
     bio: { type: String, default: "" },
     email: { type: String, trim: true },
+    userId:{type: String, trim: true, required: true},
     avatarUrl: { type: String, trim: true },
   },
   { timestamps: true }

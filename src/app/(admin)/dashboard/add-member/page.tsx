@@ -11,6 +11,7 @@ type CreateMemberFormState = {
   name: string;
   role: string;
   bio: string;
+  userId: string;
   email: string;
   avatarUrl: string;
 };
@@ -21,6 +22,7 @@ export default function AddMemberPage() {
     name: "",
     role: "",
     bio: "",
+    userId: "",
     email: "",
     avatarUrl: "",
   });
@@ -32,6 +34,7 @@ export default function AddMemberPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    console.log('form', form);
     try {
       const res = await fetch("/api/members", {
         method: "POST",
@@ -43,7 +46,7 @@ export default function AddMemberPage() {
         throw new Error("Failed to create member");
       }
       toast.success("Member created");
-      setForm({ name: "", role: "", bio: "", email: "", avatarUrl: "" });
+      setForm({ name: "", role: "", bio: "", email: "", avatarUrl: "", userId :""});
     } catch (error) {
       console.error(error);
       toast.error("Error creating member");
@@ -74,6 +77,11 @@ export default function AddMemberPage() {
           <div className="space-y-2">
             <Label htmlFor="avatarUrl">Avatar URL (optional)</Label>
             <Input id="avatarUrl" value={form.avatarUrl} onChange={(e) => updateField("avatarUrl", e.target.value)} placeholder="https://..." />
+          </div>
+
+           <div className="space-y-2">
+            <Label htmlFor="avatarUrl">User ID</Label>
+            <Input id="userId" value={form.userId} onChange={(e) => updateField("userId", e.target.value)} placeholder={"J002"} />
           </div>
           <div className="space-y-2">
             <Label htmlFor="bio">Bio</Label>

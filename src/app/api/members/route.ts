@@ -9,10 +9,13 @@ import { verifyAuthToken } from "@/lib/auth";
 const MemberInputSchema = z.object({
   name: z.string().min(1, "Name is required"),
   role: z.string().min(1, "Role is required"),
+  userId: z.string().min(1, "User ID is required"),
   bio: z.string().optional().default(""),
   email: z.string().email().optional().or(z.literal("")),
   avatarUrl: z.string().url().optional().or(z.literal("")),
 });
+
+
 
 export async function GET() {
   try {
@@ -33,6 +36,7 @@ export async function POST(req: NextRequest) {
     await connectToDatabase();
     const json = await req.json();
     const parsed = MemberInputSchema.safeParse(json);
+
     if (!parsed.success) {
       return new Response(
         JSON.stringify({ success: false, message: parsed.error.flatten() }),
@@ -48,6 +52,17 @@ export async function POST(req: NextRequest) {
     } catch {
       return new Response(JSON.stringify({ success: false, message: "Unauthorized" }), { status: 401 });
     }
+
+    const member = await MemberModel.findOne({userId: parsed.data.userId});
+
+    console.log('member', member);
+    console.log('parsed.data.userId', parsed.data.userId);
+    if(member){
+        return new Response(JSON.stringify({ success: false, message: "User ID already exist" }), { status: 404 });
+    };
+
+
+
     const created = await MemberModel.create(parsed.data);
     return new Response(JSON.stringify({ success: true, data: created }), { status: 201 });
   } catch (error) {
