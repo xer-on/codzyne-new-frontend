@@ -75,17 +75,17 @@ export default function AddMemberPage() {
             <Input id="email" type="email" value={form.email} onChange={(e) => updateField("email", e.target.value)} placeholder="jane@company.com" />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="avatarUrl">Avatar URL (optional)</Label>
-            <Input id="avatarUrl" value={form.avatarUrl} onChange={(e) => updateField("avatarUrl", e.target.value)} placeholder="https://..." />
+            <Label htmlFor="avatarUrl">Avatar URL</Label>
+            <Input id="avatarUrl" value={form.avatarUrl} onChange={(e) => updateField("avatarUrl", e.target.value)} placeholder="https://..." required />
           </div>
 
            <div className="space-y-2">
             <Label htmlFor="avatarUrl">User ID</Label>
-            <Input id="userId" value={form.userId} onChange={(e) => updateField("userId", e.target.value)} placeholder={"J002"} />
+            <Input id="userId" value={form.userId} onChange={(e) => updateField("userId", e.target.value)} placeholder={"J002"} required/>
           </div>
           <div className="space-y-2">
             <Label htmlFor="bio">Bio</Label>
-            <Textarea id="bio" value={form.bio} onChange={(e) => updateField("bio", e.target.value)} placeholder="Write a short bio" />
+            <Textarea id="bio" value={form.bio} onChange={(e) => updateField("bio", e.target.value)} placeholder="Write a short bio" required />
           </div>
           <div className="flex items-center gap-3">
             <Button type="submit" disabled={isSubmitting}>{isSubmitting ? "Saving..." : "Save Member"}</Button>
