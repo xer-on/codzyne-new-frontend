@@ -101,7 +101,7 @@ export default function TeamMemberSearch() {
           <Card className="shadow-lg">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl" style={{ fontFamily: "var(--font-heading)" }}>
-                Find Team Member
+                Verify Team Member
               </CardTitle>
               <CardDescription>Enter a team member ID to view their profile and contact information</CardDescription>
             </CardHeader>
