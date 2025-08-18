@@ -12,6 +12,8 @@ export default function AdminDashboardPage() {
             <li><Link className="text-blue-600 hover:underline" href="/dashboard/add-member">Add Member</Link></li>
             <li><Link className="text-blue-600 hover:underline" href="/dashboard/add-client">Add Client</Link></li>
             <li><Link className="text-blue-600 hover:underline" href="/dashboard/add-job">Add Job Post</Link></li>
+            <li><Link className="text-blue-600 hover:underline" href="/dashboard/add-product">Add Product</Link></li>
+
 
           </ul>
         </div>

@@ -12,7 +12,7 @@ export default function Footer() {
                 <span className="text-purple-400">Code</span>
                 <span className="text-purple-300">Zyne</span>
               </div>
-              <p className="text-gray-400">Leading IT company providing innovative laboratory information systems.</p>
+              <p className="text-gray-400">Welcome to your digital future, where innovation meets opportunity, and every step you take brings you closer to a smarter, more connected world.</p>
             </div>
             <div>
               <h3 className="font-semibold mb-4">Company</h3>

@@ -28,12 +28,12 @@ const HeroSection = () => {
               modern laboratories and research facilities.
             </p>
             
-            <Button 
+            {/* <Button 
               size="lg"
               className="bg-green-600 hover:bg-green-700 text-white font-semibold px-10 py-4 text-lg rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Read Details
-            </Button>
+            </Button> */}
           </div>
         </div>
       </section>

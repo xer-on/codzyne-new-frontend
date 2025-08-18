@@ -6,6 +6,7 @@ import Products from "@/components/home/products";
 import Mockup from "@/components/home/mockup";
 import Projects from "@/components/home/projects";
 import Technologies from "@/components/technologies";
+import Members from "./(frontend)/members/Members";
 
 export default function Home() {
   return (
@@ -22,17 +23,18 @@ export default function Home() {
       <AboutUs />
 
       {/* Solutions Section */}
-      <Solutions />
+      {/* <Solutions /> */}
 
       {/* Products Section */}
-      <Products />
+      {/* <Products /> */}
 
       {/* Mockup Section */}
-      <Mockup />
+      {/* <Mockup /> */}
 
       {/* Projects Section */}
       <Projects />
 
+       <Members />
       {/* Technologies Section */}
       <Technologies />
     </div>

@@ -75,7 +75,7 @@ const Technologies: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 px-4 bg-white">
+    <section ref={sectionRef} className="py-16 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12">
