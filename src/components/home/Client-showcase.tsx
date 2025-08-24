@@ -28,7 +28,6 @@ export function ClientShowcase({ clients }: ClientShowcaseProps) {
     }
   }
 
-  console.log('clients', clients)
 
 
   

@@ -24,25 +24,27 @@ export interface IClient {
 function ClientsData() {
   const [clients, setClients] = useState<IClient[]>([]);
 
-  const fetchClients = async () => {
+useEffect(() => {
+  const load = async () => {
+    console.log('api called...');
+    setLoading(true);
     try {
-      const res = await fetch("/api/clients", { cache: "no-store" });
+      const res = await fetch("/api/clients");
       const data = await res.json();
-      const clientsData = data.data as IClient[];
-      setClients(clientsData);
-    } catch (error) {
-      console.error("Error fetching clients:", error);
+      if (!res.ok || !data?.success) throw new Error();
+      setClients(data.data as IClient[]);
+    } catch {
+      toast.error("Failed to load clients");
+    } finally {
+      setLoading(false);
     }
-  }
+  };
+  load();
+}, []); 
 
-  useEffect(() => {
-    fetchClients();
-  }, []);
+  if (loading) return <p>Loading...</p>;
+  if (!clients.length) return <p></p>;
 
-
-  if(clients && clients.length === 0) return <p></p>;
-
-  
   return (
     <div>
       <section className="bg-gray-100 py-16 md:py-20">
