@@ -2,6 +2,7 @@
 
 import React, { Suspense, useEffect, useState } from 'react'
 import { ClientShowcase } from './Client-showcase';
+import { toast } from 'sonner';
 
 export interface IClient {
   _id?: string; // optional because MongoDB generates it
@@ -23,24 +24,25 @@ export interface IClient {
 // Component for fetching and displaying clients data
 function ClientsData() {
   const [clients, setClients] = useState<IClient[]>([]);
+  const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-  const load = async () => {
-    console.log('api called...');
-    setLoading(true);
-    try {
-      const res = await fetch("/api/clients");
-      const data = await res.json();
-      if (!res.ok || !data?.success) throw new Error();
-      setClients(data.data as IClient[]);
-    } catch {
-      toast.error("Failed to load clients");
-    } finally {
-      setLoading(false);
-    }
-  };
-  load();
-}, []); 
+  useEffect(() => {
+    const load = async () => {
+      console.log('api called...');
+      setLoading(true);
+      try {
+        const res = await fetch("/api/clients");
+        const data = await res.json();
+        if (!res.ok || !data?.success) throw new Error();
+        setClients(data.data as IClient[]);
+      } catch {
+        toast.error("Failed to load clients");
+      } finally {
+        setLoading(false);
+      }
+    };
+    load();
+  }, []); 
 
   if (loading) return <p>Loading...</p>;
   if (!clients.length) return <p></p>;
